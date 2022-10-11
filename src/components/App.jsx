@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import { Movies } from '../pages/Movies/Movies';
 import { Home } from '../pages/Home/Home';
 import { NotFound } from '../pages/NotFound/NotFound';
-import { MovieDetails } from 'pages/MovieDetails';
+import { MovieDetails } from 'pages/movieDetails/MovieDetails';
 import { Reviews } from './reviews/Reviews';
 import { Cast } from './cast/Cast';
 import { SharedLayout } from './SharedLayout';

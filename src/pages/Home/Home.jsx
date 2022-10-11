@@ -1,13 +1,18 @@
-// import { fetchMovie } from 'components/fetchMovie';
-import { HomeMovieList } from 'components/HomeMovieList';
+import { useEffect, useState } from 'react';
 
+import { MoviesList } from 'components/moviesList/MoviesList';
+import { fetchMovie } from 'components/fetchMovie';
 export const Home = () => {
-  // const movies = fetchMovie();
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    fetchMovie().then(setMovies);
+  }, []);
 
   return (
     <main>
       <h1>Trending today</h1>
-      <HomeMovieList />
+      <MoviesList movies={movies} />
     </main>
   );
 };
