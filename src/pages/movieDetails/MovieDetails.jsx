@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
 import { fetchMovieDetails } from 'components/fetchMovie';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const { movieId } = useParams();
-
   const [movie, setMovie] = useState(null);
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/';
 
   useEffect(() => {
     fetchMovieDetails(movieId).then(setMovie);
@@ -19,6 +20,7 @@ export const MovieDetails = () => {
 
   return (
     <section>
+      <Link to={backLinkHref}>Go back</Link>
       <h1>{title}</h1>
       <p>User Score: {Math.round(`${popularity}`)}%</p>
       <h2>Overview</h2>
@@ -55,3 +57,5 @@ export const MovieDetails = () => {
     </section>
   );
 };
+
+export default MovieDetails;

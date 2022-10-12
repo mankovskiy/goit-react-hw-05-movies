@@ -4,24 +4,18 @@ import { fetchSearchMovie } from 'components/fetchMovie';
 import { SearchBox } from 'components/searchBox/SearchBox';
 import { MoviesList } from 'components/moviesList/MoviesList';
 
-export const Movies = () => {
+const Movies = () => {
   const [searchMovie, setSearchMovie] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const movie = searchParams.get('movie');
-
-  console.log(movie);
 
   useEffect(() => {
     if (!movie) {
       return;
     }
+
     fetchSearchMovie(movie).then(r => setSearchMovie(r));
   }, [movie]);
-
-  // const updateQueryString = value => {
-  //   console.log(value);
-  //   setSearchParams(value !== '' ? { movie: value } : {});
-  // };
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -37,3 +31,5 @@ export const Movies = () => {
     </main>
   );
 };
+
+export default Movies;
