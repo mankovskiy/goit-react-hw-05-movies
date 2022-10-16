@@ -1,12 +1,16 @@
+import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
+import { Suspense } from 'react';
 import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
-import { fetchMovieDetails } from 'components/fetchMovie';
+import { fetchMovieDetails } from 'services/fetchMovie';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/';
+  // const backTo = backLinkHref.pathname === '/' ? 'Home' : 'Movies';
+  // console.log(backLinkHref);
 
   useEffect(() => {
     fetchMovieDetails(movieId).then(setMovie);
@@ -19,7 +23,7 @@ const MovieDetails = () => {
   const { poster_path, title, popularity, overview, genres } = movie;
 
   return (
-    <section>
+    <main>
       <Link to={backLinkHref}>Go back</Link>
       <h1>{title}</h1>
       <p>User Score: {Math.round(`${popularity}`)}%</p>
@@ -43,7 +47,6 @@ const MovieDetails = () => {
           }
           alt=""
         />
-        {/* {!poster_path&&(<img src="https://via.placeholder.com/250x200" alt="">)  } */}
       </div>
       <ul>
         <li>
@@ -53,9 +56,21 @@ const MovieDetails = () => {
           <Link to="reviews">Reviews</Link>
         </li>
       </ul>
-      <Outlet />
-    </section>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
+    </main>
   );
+};
+
+MovieDetails.propTypes = {
+  movie: PropTypes.shape({
+    poster_path: PropTypes.string,
+    title: PropTypes.string,
+    popularity: PropTypes.number,
+    overview: PropTypes.string,
+    genres: PropTypes.array,
+  }),
 };
 
 export default MovieDetails;

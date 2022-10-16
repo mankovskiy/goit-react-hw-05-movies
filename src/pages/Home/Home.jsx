@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { MoviesList } from 'components/moviesList/MoviesList';
-import { fetchMovie } from 'components/fetchMovie';
+import { fetchMovie } from 'services/fetchMovie';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
@@ -13,7 +13,7 @@ const Home = () => {
   return (
     <main>
       <h1>Trending today</h1>
-      <MoviesList movies={movies} />
+      {movies && <MoviesList movies={movies} />}
     </main>
   );
 };

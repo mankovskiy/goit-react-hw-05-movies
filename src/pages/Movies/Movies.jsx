@@ -1,18 +1,16 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { fetchSearchMovie } from 'components/fetchMovie';
+import { fetchSearchMovie } from 'services/fetchMovie';
 import { SearchBox } from 'components/searchBox/SearchBox';
 import { MoviesList } from 'components/moviesList/MoviesList';
 
 const Movies = () => {
   const [searchMovie, setSearchMovie] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
-  const movie = searchParams.get('movie');
+  const movie = searchParams.get('movie') ?? '';
 
   useEffect(() => {
-    if (!movie) {
-      return;
-    }
+    if (!movie) return;
 
     fetchSearchMovie(movie).then(r => setSearchMovie(r));
   }, [movie]);
@@ -26,7 +24,7 @@ const Movies = () => {
   return (
     <main>
       <h1>Movies</h1>
-      <SearchBox onSubmit={handleSubmit} />
+      <SearchBox onSubmit={handleSubmit} value={movie} />
       {searchMovie.length > 0 && <MoviesList movies={searchMovie} />}
     </main>
   );

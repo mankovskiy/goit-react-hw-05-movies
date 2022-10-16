@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchMovieReviews } from 'components/fetchMovie';
+import { fetchMovieReviews } from 'services/fetchMovie';
 
 const Reviews = () => {
   const { movieId } = useParams();
@@ -10,7 +10,7 @@ const Reviews = () => {
   useEffect(() => {
     fetchMovieReviews(movieId).then(setReviews);
   }, [movieId]);
-  console.log(reviews);
+
   if (!reviews) {
     return null;
   }

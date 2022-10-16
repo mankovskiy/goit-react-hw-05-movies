@@ -5,6 +5,7 @@ export async function fetchMovie() {
     const response = await axios.get(
       'https://api.themoviedb.org/3/trending/movie/day?api_key=35e417e69f137291206951efd172c8b1'
     );
+
     return response.data.results;
   } catch (error) {
     console.error(error);
@@ -49,7 +50,6 @@ export async function fetchSearchMovie(movie) {
     const response = await axios.get(
       `https://api.themoviedb.org/3/search/movie?api_key=35e417e69f137291206951efd172c8b1&query=${movie}&language=en-US&page=1&include_adult=false`
     );
-    console.log(response.data.results);
     return response.data.results;
   } catch (error) {
     console.error(error);

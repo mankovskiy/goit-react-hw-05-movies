@@ -1,13 +1,13 @@
-export const SearchBox = ({ searchName, onSubmit }) => {
+export const SearchBox = ({ value, onSubmit }) => {
   return (
     <form onSubmit={onSubmit}>
       <input
         name="movie"
         type="text"
-        autoComplete="off"
-        autoFocus
+        // autoComplete="off"
+        // autoFocus
         placeholder="Search movies"
-        // value={searchName}
+        defaultValue={value}
       />
       <button type="submit">Search</button>
     </form>
