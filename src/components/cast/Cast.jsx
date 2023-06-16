@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchMovieCast } from 'services/fetchMovie';
+import { Img } from './Cast.styled';
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -20,7 +21,7 @@ const Cast = () => {
       <ul>
         {casts.map(({ id, name, profile_path, character }) => (
           <li key={id}>
-            <img
+            <Img
               src={
                 !profile_path
                   ? 'https://via.placeholder.com/250x200'

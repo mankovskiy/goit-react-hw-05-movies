@@ -18,6 +18,7 @@ const Movies = () => {
   const handleSubmit = e => {
     e.preventDefault();
     const queryMovie = e.target.elements.movie.value;
+
     setSearchParams(queryMovie !== '' ? { movie: queryMovie } : '');
   };
 

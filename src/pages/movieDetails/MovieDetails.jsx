@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Suspense } from 'react';
 import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
 import { fetchMovieDetails } from 'services/fetchMovie';
+import { Img, Main } from './MovieDetails.styled';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -23,7 +24,7 @@ const MovieDetails = () => {
   const { poster_path, title, popularity, overview, genres } = movie;
 
   return (
-    <main>
+    <Main>
       <Link to={backLinkHref}>Go back</Link>
       <h1>{title}</h1>
       <p>User Score: {Math.round(`${popularity}`)}%</p>
@@ -39,7 +40,7 @@ const MovieDetails = () => {
         })}
       </ul>
       <div>
-        <img
+        <Img
           src={
             !poster_path
               ? 'https://via.placeholder.com/250x200'
@@ -59,7 +60,7 @@ const MovieDetails = () => {
       <Suspense fallback={<div>Loading...</div>}>
         <Outlet />
       </Suspense>
-    </main>
+    </Main>
   );
 };
 

@@ -12,3 +12,9 @@ export const MovieGallery = styled.ul`
   margin-left: auto;
   margin-right: auto;
 `;
+
+export const CardTitle = styled.p`
+  color: white;
+  text-align: center;
+  margin-top: 10px;
+`;
