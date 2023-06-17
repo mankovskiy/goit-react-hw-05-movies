@@ -1,7 +1,9 @@
+import { Input } from './SearchBox.styled';
+
 export const SearchBox = ({ value, onSubmit }) => {
   return (
     <form onSubmit={onSubmit}>
-      <input
+      <Input
         name="movie"
         type="text"
         // autoComplete="off"

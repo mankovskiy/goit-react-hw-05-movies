@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Main } from 'pages/Movies/Movies.styled';
-
 import { MoviesList } from 'components/moviesList/MoviesList';
 import { fetchMovie } from 'services/fetchMovie';
+import { TitleCard } from 'components/App.styled';
 
 const MyFavoriteMovies = () => {
   const [movies, setMovies] = useState([]);
@@ -13,7 +13,7 @@ const MyFavoriteMovies = () => {
 
   return (
     <Main>
-      <h1>My Favorite Movies</h1>
+      <TitleCard>My Favorite Movies</TitleCard>
       {movies && <MoviesList movies={movies} />}
     </Main>
   );

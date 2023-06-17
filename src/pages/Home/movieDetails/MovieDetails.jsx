@@ -3,14 +3,7 @@ import { useState, useEffect } from 'react';
 import { Suspense } from 'react';
 import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
 import { fetchMovieDetails } from 'services/fetchMovie';
-import {
-  Img,
-  Main,
-  Wrapper,
-  StyledLink,
-  Info,
-  MoreInfo,
-} from './MovieDetails.styled';
+import { Img, Main } from './MovieDetails.styled';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -32,42 +25,38 @@ const MovieDetails = () => {
 
   return (
     <Main>
-      <StyledLink to={backLinkHref}>Go back</StyledLink>
-      <Wrapper>
-        <div>
-          <Img
-            src={
-              !poster_path
-                ? 'https://via.placeholder.com/250x200'
-                : `https://image.tmdb.org/t/p/w500${poster_path}`
-            }
-            alt=""
-          />
-        </div>
-        <Info>
-          <h1>{title}</h1>
-          <p>User Score: {Math.round(`${popularity}`)}%</p>
-          <h2>Overview</h2>
-          <p>{overview}</p>
-          <h3>Genres</h3>
-          <ul>
-            {genres.map(({ name, id }) => {
-              if (!genres) {
-                return 'no genre';
-              }
-              return <li key={id}>{name}</li>;
-            })}
-          </ul>
-          <MoreInfo>
-            <li>
-              <Link to="cast">Cast</Link>
-            </li>
-            <li>
-              <Link to="reviews">Reviews</Link>
-            </li>
-          </MoreInfo>
-        </Info>
-      </Wrapper>
+      <Link to={backLinkHref}>Go back</Link>
+      <h1>{title}</h1>
+      <p>User Score: {Math.round(`${popularity}`)}%</p>
+      <h2>Overview</h2>
+      <p>{overview}</p>
+      <h3>Genres</h3>
+      <ul>
+        {genres.map(({ name, id }) => {
+          if (!genres) {
+            return 'no genre';
+          }
+          return <li key={id}>{name}</li>;
+        })}
+      </ul>
+      <div>
+        <Img
+          src={
+            !poster_path
+              ? 'https://via.placeholder.com/250x200'
+              : `https://image.tmdb.org/t/p/w500${poster_path}`
+          }
+          alt=""
+        />
+      </div>
+      <ul>
+        <li>
+          <Link to="cast">Cast</Link>
+        </li>
+        <li>
+          <Link to="reviews">Reviews</Link>
+        </li>
+      </ul>
       <Suspense fallback={<div>Loading...</div>}>
         <Outlet />
       </Suspense>

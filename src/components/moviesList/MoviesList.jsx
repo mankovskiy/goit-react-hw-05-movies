@@ -15,7 +15,7 @@ export const MoviesList = ({ movies }) => {
         <MovieItem key={id}>
           <Link to={`/movies/${id}`} state={{ from: location }}>
             <img
-              width="100"
+              // width="100"
               src={
                 !poster_path
                   ? 'https://via.placeholder.com/250x200'

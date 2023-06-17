@@ -7,10 +7,19 @@ export const Container = styled.div`
   padding: 0 15px;
 `;
 
+export const Title = styled.h1`
+  margin-bottom: 12px;
+  text-align: center;
+`;
+export const TitleCard = styled.h1`
+  margin-bottom: 12px;
+  text-align: center;
+`;
+
 export const Header = styled.header`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: start;
   gap: 12px;
   padding: 8px 0;
 

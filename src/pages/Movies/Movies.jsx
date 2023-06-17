@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { fetchSearchMovie } from 'services/fetchMovie';
 import { SearchBox } from 'components/searchBox/SearchBox';
 import { MoviesList } from 'components/moviesList/MoviesList';
-
+import { TitleCard } from 'components/App.styled';
 const Movies = () => {
   const [searchMovie, setSearchMovie] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -24,7 +24,7 @@ const Movies = () => {
 
   return (
     <main>
-      <h1>Movies</h1>
+      <TitleCard>Movies</TitleCard>
       <SearchBox onSubmit={handleSubmit} value={movie} />
       {searchMovie.length > 0 && <MoviesList movies={searchMovie} />}
     </main>
